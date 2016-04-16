@@ -7,14 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8006BD91CC268FB0068CAE9 /* Megaman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8006BD81CC268FB0068CAE9 /* Megaman.swift */; };
+		D8006BDB1CC269670068CAE9 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8006BDA1CC269670068CAE9 /* Character.swift */; };
+		D8006BDD1CC269760068CAE9 /* Protoman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8006BDC1CC269760068CAE9 /* Protoman.swift */; };
+		D8006BDF1CC2A6DF0068CAE9 /* Airman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8006BDE1CC2A6DF0068CAE9 /* Airman.swift */; };
+		D8006BE11CC2ADE40068CAE9 /* sfxMenuBtnPressed.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BE01CC2ADE40068CAE9 /* sfxMenuBtnPressed.wav */; };
+		D8006BE31CC2AE350068CAE9 /* bgmEnemyIntro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8006BE21CC2AE350068CAE9 /* bgmEnemyIntro.mp3 */; };
+		D8006BE51CC2AEC40068CAE9 /* bgmFight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8006BE41CC2AEC40068CAE9 /* bgmFight.mp3 */; };
+		D8006BE71CC2AF660068CAE9 /* bgmCharSel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8006BE61CC2AF660068CAE9 /* bgmCharSel.mp3 */; };
+		D8006BE91CC2B0220068CAE9 /* bgmRestart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D8006BE81CC2B0220068CAE9 /* bgmRestart.mp3 */; };
+		D8006BEB1CC2D41D0068CAE9 /* sfxMegaMWin.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BEA1CC2D41D0068CAE9 /* sfxMegaMWin.wav */; };
+		D8006BED1CC2D44F0068CAE9 /* sfxMegaMHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BEC1CC2D44F0068CAE9 /* sfxMegaMHurt.wav */; };
+		D8006BF11CC2DB2D0068CAE9 /* sfxShieldUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BF01CC2DB2D0068CAE9 /* sfxShieldUp.wav */; };
+		D8006BF31CC2DB380068CAE9 /* sfxLifeUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BF21CC2DB380068CAE9 /* sfxLifeUp.wav */; };
+		D8006BF51CC2DD050068CAE9 /* sfxShieldBlock.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BF41CC2DD050068CAE9 /* sfxShieldBlock.wav */; };
+		D8006BF71CC2DDB50068CAE9 /* sfxMegaMShoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BF61CC2DDB50068CAE9 /* sfxMegaMShoot.wav */; };
+		D8006BF91CC2DE7B0068CAE9 /* sfxProtMShoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BF81CC2DE7B0068CAE9 /* sfxProtMShoot.wav */; };
+		D8006BFB1CC2E1060068CAE9 /* sfxAirMHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BFA1CC2E1060068CAE9 /* sfxAirMHurt.wav */; };
+		D8006BFD1CC2E12B0068CAE9 /* sfxAirMShoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BFC1CC2E12B0068CAE9 /* sfxAirMShoot.wav */; };
+		D8006BFF1CC2E2040068CAE9 /* sfxProtMHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BFE1CC2E2040068CAE9 /* sfxProtMHurt.wav */; };
+		D8006C011CC2E35D0068CAE9 /* sfxProtMWin.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006C001CC2E35D0068CAE9 /* sfxProtMWin.wav */; };
+		D8006C031CC2E5400068CAE9 /* sfxAirMWin.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006C021CC2E5400068CAE9 /* sfxAirMWin.wav */; };
 		D84D79F51CBBF507002A1862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D79F41CBBF507002A1862 /* AppDelegate.swift */; };
 		D84D79F71CBBF507002A1862 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D79F61CBBF507002A1862 /* ViewController.swift */; };
 		D84D79FA1CBBF507002A1862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84D79F81CBBF507002A1862 /* Main.storyboard */; };
 		D84D79FC1CBBF507002A1862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D84D79FB1CBBF507002A1862 /* Assets.xcassets */; };
 		D84D79FF1CBBF507002A1862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84D79FD1CBBF507002A1862 /* LaunchScreen.storyboard */; };
+		D84D7A071CBC007F002A1862 /* AnimImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D7A061CBC007F002A1862 /* AnimImg.swift */; };
+		D84D7A091CBC9B0C002A1862 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D7A081CBC9B0C002A1862 /* GameStates.swift */; };
+		D84D7A0B1CBCCA0D002A1862 /* Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D7A0A1CBCCA0D002A1862 /* Shuffle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8006BD81CC268FB0068CAE9 /* Megaman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Megaman.swift; sourceTree = "<group>"; };
+		D8006BDA1CC269670068CAE9 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		D8006BDC1CC269760068CAE9 /* Protoman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protoman.swift; sourceTree = "<group>"; };
+		D8006BDE1CC2A6DF0068CAE9 /* Airman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Airman.swift; sourceTree = "<group>"; };
+		D8006BE01CC2ADE40068CAE9 /* sfxMenuBtnPressed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxMenuBtnPressed.wav; sourceTree = "<group>"; };
+		D8006BE21CC2AE350068CAE9 /* bgmEnemyIntro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmEnemyIntro.mp3; sourceTree = "<group>"; };
+		D8006BE41CC2AEC40068CAE9 /* bgmFight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmFight.mp3; sourceTree = "<group>"; };
+		D8006BE61CC2AF660068CAE9 /* bgmCharSel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmCharSel.mp3; sourceTree = "<group>"; };
+		D8006BE81CC2B0220068CAE9 /* bgmRestart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmRestart.mp3; sourceTree = "<group>"; };
+		D8006BEA1CC2D41D0068CAE9 /* sfxMegaMWin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxMegaMWin.wav; sourceTree = "<group>"; };
+		D8006BEC1CC2D44F0068CAE9 /* sfxMegaMHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxMegaMHurt.wav; sourceTree = "<group>"; };
+		D8006BF01CC2DB2D0068CAE9 /* sfxShieldUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxShieldUp.wav; sourceTree = "<group>"; };
+		D8006BF21CC2DB380068CAE9 /* sfxLifeUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxLifeUp.wav; sourceTree = "<group>"; };
+		D8006BF41CC2DD050068CAE9 /* sfxShieldBlock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxShieldBlock.wav; sourceTree = "<group>"; };
+		D8006BF61CC2DDB50068CAE9 /* sfxMegaMShoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxMegaMShoot.wav; sourceTree = "<group>"; };
+		D8006BF81CC2DE7B0068CAE9 /* sfxProtMShoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxProtMShoot.wav; sourceTree = "<group>"; };
+		D8006BFA1CC2E1060068CAE9 /* sfxAirMHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxAirMHurt.wav; sourceTree = "<group>"; };
+		D8006BFC1CC2E12B0068CAE9 /* sfxAirMShoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxAirMShoot.wav; sourceTree = "<group>"; };
+		D8006BFE1CC2E2040068CAE9 /* sfxProtMHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxProtMHurt.wav; sourceTree = "<group>"; };
+		D8006C001CC2E35D0068CAE9 /* sfxProtMWin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxProtMWin.wav; sourceTree = "<group>"; };
+		D8006C021CC2E5400068CAE9 /* sfxAirMWin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxAirMWin.wav; sourceTree = "<group>"; };
 		D84D79F11CBBF507002A1862 /* MegaForce4Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MegaForce4Fun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D84D79F41CBBF507002A1862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D84D79F61CBBF507002A1862 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +67,9 @@
 		D84D79FB1CBBF507002A1862 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D84D79FE1CBBF507002A1862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D84D7A001CBBF507002A1862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D84D7A061CBC007F002A1862 /* AnimImg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimImg.swift; sourceTree = "<group>"; };
+		D84D7A081CBC9B0C002A1862 /* GameStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
+		D84D7A0A1CBCCA0D002A1862 /* Shuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shuffle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +102,36 @@
 		D84D79F31CBBF507002A1862 /* MegaForce4Fun */ = {
 			isa = PBXGroup;
 			children = (
+				D8006BE61CC2AF660068CAE9 /* bgmCharSel.mp3 */,
+				D8006BE41CC2AEC40068CAE9 /* bgmFight.mp3 */,
+				D8006BE81CC2B0220068CAE9 /* bgmRestart.mp3 */,
+				D8006BE21CC2AE350068CAE9 /* bgmEnemyIntro.mp3 */,
+				D8006BF01CC2DB2D0068CAE9 /* sfxShieldUp.wav */,
+				D8006BF41CC2DD050068CAE9 /* sfxShieldBlock.wav */,
+				D8006BF21CC2DB380068CAE9 /* sfxLifeUp.wav */,
+				D8006BF61CC2DDB50068CAE9 /* sfxMegaMShoot.wav */,
+				D8006BEC1CC2D44F0068CAE9 /* sfxMegaMHurt.wav */,
+				D8006BEA1CC2D41D0068CAE9 /* sfxMegaMWin.wav */,
+				D8006BF81CC2DE7B0068CAE9 /* sfxProtMShoot.wav */,
+				D8006BFE1CC2E2040068CAE9 /* sfxProtMHurt.wav */,
+				D8006C001CC2E35D0068CAE9 /* sfxProtMWin.wav */,
+				D8006BFA1CC2E1060068CAE9 /* sfxAirMHurt.wav */,
+				D8006C021CC2E5400068CAE9 /* sfxAirMWin.wav */,
+				D8006BFC1CC2E12B0068CAE9 /* sfxAirMShoot.wav */,
+				D8006BE01CC2ADE40068CAE9 /* sfxMenuBtnPressed.wav */,
 				D84D79F41CBBF507002A1862 /* AppDelegate.swift */,
 				D84D79F61CBBF507002A1862 /* ViewController.swift */,
 				D84D79F81CBBF507002A1862 /* Main.storyboard */,
 				D84D79FB1CBBF507002A1862 /* Assets.xcassets */,
 				D84D79FD1CBBF507002A1862 /* LaunchScreen.storyboard */,
 				D84D7A001CBBF507002A1862 /* Info.plist */,
+				D84D7A061CBC007F002A1862 /* AnimImg.swift */,
+				D84D7A0A1CBCCA0D002A1862 /* Shuffle.swift */,
+				D84D7A081CBC9B0C002A1862 /* GameStates.swift */,
+				D8006BDA1CC269670068CAE9 /* Character.swift */,
+				D8006BD81CC268FB0068CAE9 /* Megaman.swift */,
+				D8006BDC1CC269760068CAE9 /* Protoman.swift */,
+				D8006BDE1CC2A6DF0068CAE9 /* Airman.swift */,
 			);
 			path = MegaForce4Fun;
 			sourceTree = "<group>";
@@ -122,9 +194,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8006BF51CC2DD050068CAE9 /* sfxShieldBlock.wav in Resources */,
+				D8006BF31CC2DB380068CAE9 /* sfxLifeUp.wav in Resources */,
+				D8006BFF1CC2E2040068CAE9 /* sfxProtMHurt.wav in Resources */,
+				D8006BE11CC2ADE40068CAE9 /* sfxMenuBtnPressed.wav in Resources */,
 				D84D79FF1CBBF507002A1862 /* LaunchScreen.storyboard in Resources */,
+				D8006C011CC2E35D0068CAE9 /* sfxProtMWin.wav in Resources */,
+				D8006C031CC2E5400068CAE9 /* sfxAirMWin.wav in Resources */,
+				D8006BF11CC2DB2D0068CAE9 /* sfxShieldUp.wav in Resources */,
+				D8006BE31CC2AE350068CAE9 /* bgmEnemyIntro.mp3 in Resources */,
+				D8006BF91CC2DE7B0068CAE9 /* sfxProtMShoot.wav in Resources */,
+				D8006BE51CC2AEC40068CAE9 /* bgmFight.mp3 in Resources */,
+				D8006BFB1CC2E1060068CAE9 /* sfxAirMHurt.wav in Resources */,
+				D8006BE71CC2AF660068CAE9 /* bgmCharSel.mp3 in Resources */,
+				D8006BF71CC2DDB50068CAE9 /* sfxMegaMShoot.wav in Resources */,
 				D84D79FC1CBBF507002A1862 /* Assets.xcassets in Resources */,
+				D8006BEB1CC2D41D0068CAE9 /* sfxMegaMWin.wav in Resources */,
+				D8006BED1CC2D44F0068CAE9 /* sfxMegaMHurt.wav in Resources */,
 				D84D79FA1CBBF507002A1862 /* Main.storyboard in Resources */,
+				D8006BFD1CC2E12B0068CAE9 /* sfxAirMShoot.wav in Resources */,
+				D8006BE91CC2B0220068CAE9 /* bgmRestart.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +224,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84D7A0B1CBCCA0D002A1862 /* Shuffle.swift in Sources */,
+				D8006BDD1CC269760068CAE9 /* Protoman.swift in Sources */,
 				D84D79F71CBBF507002A1862 /* ViewController.swift in Sources */,
+				D8006BDB1CC269670068CAE9 /* Character.swift in Sources */,
+				D8006BDF1CC2A6DF0068CAE9 /* Airman.swift in Sources */,
+				D84D7A091CBC9B0C002A1862 /* GameStates.swift in Sources */,
+				D84D7A071CBC007F002A1862 /* AnimImg.swift in Sources */,
+				D8006BD91CC268FB0068CAE9 /* Megaman.swift in Sources */,
 				D84D79F51CBBF507002A1862 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MegaForce4Fun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stephanedepoilly.MegaForce4Fun;
@@ -262,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MegaForce4Fun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stephanedepoilly.MegaForce4Fun;
@@ -288,6 +386,7 @@
 				D84D7A051CBBF507002A1862 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
