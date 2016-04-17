@@ -28,6 +28,7 @@
 		D8006BFF1CC2E2040068CAE9 /* sfxProtMHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006BFE1CC2E2040068CAE9 /* sfxProtMHurt.wav */; };
 		D8006C011CC2E35D0068CAE9 /* sfxProtMWin.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006C001CC2E35D0068CAE9 /* sfxProtMWin.wav */; };
 		D8006C031CC2E5400068CAE9 /* sfxAirMWin.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006C021CC2E5400068CAE9 /* sfxAirMWin.wav */; };
+		D8006C051CC319F70068CAE9 /* sfxAirMLose.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8006C041CC319F70068CAE9 /* sfxAirMLose.wav */; };
 		D84D79F51CBBF507002A1862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D79F41CBBF507002A1862 /* AppDelegate.swift */; };
 		D84D79F71CBBF507002A1862 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D79F61CBBF507002A1862 /* ViewController.swift */; };
 		D84D79FA1CBBF507002A1862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84D79F81CBBF507002A1862 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		D8006BFE1CC2E2040068CAE9 /* sfxProtMHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxProtMHurt.wav; sourceTree = "<group>"; };
 		D8006C001CC2E35D0068CAE9 /* sfxProtMWin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxProtMWin.wav; sourceTree = "<group>"; };
 		D8006C021CC2E5400068CAE9 /* sfxAirMWin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxAirMWin.wav; sourceTree = "<group>"; };
+		D8006C041CC319F70068CAE9 /* sfxAirMLose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxAirMLose.wav; sourceTree = "<group>"; };
 		D84D79F11CBBF507002A1862 /* MegaForce4Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MegaForce4Fun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D84D79F41CBBF507002A1862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D84D79F61CBBF507002A1862 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				D8006C001CC2E35D0068CAE9 /* sfxProtMWin.wav */,
 				D8006BFA1CC2E1060068CAE9 /* sfxAirMHurt.wav */,
 				D8006C021CC2E5400068CAE9 /* sfxAirMWin.wav */,
+				D8006C041CC319F70068CAE9 /* sfxAirMLose.wav */,
 				D8006BFC1CC2E12B0068CAE9 /* sfxAirMShoot.wav */,
 				D8006BE01CC2ADE40068CAE9 /* sfxMenuBtnPressed.wav */,
 				D84D79F41CBBF507002A1862 /* AppDelegate.swift */,
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8006BF51CC2DD050068CAE9 /* sfxShieldBlock.wav in Resources */,
+				D8006C051CC319F70068CAE9 /* sfxAirMLose.wav in Resources */,
 				D8006BF31CC2DB380068CAE9 /* sfxLifeUp.wav in Resources */,
 				D8006BFF1CC2E2040068CAE9 /* sfxProtMHurt.wav in Resources */,
 				D8006BE11CC2ADE40068CAE9 /* sfxMenuBtnPressed.wav in Resources */,

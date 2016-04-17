@@ -128,6 +128,7 @@ class ViewController: UIViewController {
         player = Megaman()
         sfxMenuBtnPressed.play()
         animPlayerSpr.playIdleAnim(player.name)
+        animEnemySpr.playIdleAnim(enemy.name)
         enemy = Airman()
         displayFightScreen()
     }
@@ -137,6 +138,7 @@ class ViewController: UIViewController {
         player = Protoman()
         sfxMenuBtnPressed.play()
         animPlayerSpr.playIdleAnim(player.name)
+        animEnemySpr.playIdleAnim(enemy.name)
         enemy = Airman()
         displayFightScreen()
     }
@@ -146,16 +148,19 @@ class ViewController: UIViewController {
     
     
     @IBAction func playerBtnTop(sender: AnyObject) {
+        playerIsActive = true
         updatePlayerState(btnItemTop)
         newRound()
     }
     
     @IBAction func playerBtnCenter(sender: AnyObject) {
+        playerIsActive = true
         updatePlayerState(btnItemCenter)
         newRound()
     }
     
     @IBAction func playerBtnBottom(sender: AnyObject) {
+        playerIsActive = true
         updatePlayerState(btnItemBottom)
         newRound()
     }
@@ -254,6 +259,9 @@ class ViewController: UIViewController {
             try sfxAirMWin = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sfxAirMWin", ofType: "wav")!))
             sfxAirMWin.prepareToPlay()
             
+            try sfxAirMLose = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sfxAirMLose", ofType: "wav")!))
+            sfxAirMLose.prepareToPlay()
+            
         } catch let err as NSError {
             print(err.debugDescription)
         }
@@ -261,7 +269,6 @@ class ViewController: UIViewController {
         //        startTimer()
     }
 
-    
     
     
 // METHODS // CHARACTER SELECTION
@@ -324,7 +331,6 @@ class ViewController: UIViewController {
         updateImgBtn(btnItemCenter)
         updateImgBtn(btnItemBottom)
         itemDropActivate()
-
     }
     
     //// Reset the fight if "Restart button" is pressed
@@ -332,6 +338,7 @@ class ViewController: UIViewController {
         player.hp = 4
         player.shieldCount = 0
         enemy.hp = 4
+        itemDropActivate()
         animPlayerSpr.playIdleAnim(player.name)
         animEnemySpr.playIdleAnim(enemy.name)
         viewFightScreen.hidden = false
@@ -353,8 +360,6 @@ class ViewController: UIViewController {
     //// When the timer is over, check if an item has been dropped on the player sprite
     func timeIsOver() {
         playerIsActive = false
-        playerIsDead()
-        enemyIsDead()
         checkIfActive()
         newRound()
     }
@@ -373,6 +378,7 @@ class ViewController: UIViewController {
         }
 
     }
+    
     
     //// Update the image to show to the player what item needs to be dropped on the character.
     func updateItemNeed() {
@@ -440,62 +446,58 @@ class ViewController: UIViewController {
     }
     
     func playerIsAttacked() {
-        if player.shieldCount == 0 {
-            player.hp -= 1
-            playSfxHurt(player.name)
-            playSfxShoot(enemy.name)
-//            animPlayerSpr.playHurtAnim(player.name)
-//            animEnemySpr.playAttackAnim(enemy.name)
-            itemInfo.image = UIImage (named:"itemMinusHp.png")
-            fadeInOut(itemInfo)
-            updateHpBar()
-            playerIsDead()
-        } else {
+        if player.shieldCount >= 1 {
             player.shieldCount -= 1
+            updateShieldBar()
             sfxShieldBlock.play()
             animPlayerSpr.playIdleAnim(player.name)
             animEnemySpr.playAttackAnim(enemy.name)
             itemInfo.image = UIImage (named:"itemBlocked.png")
             fadeInOut(itemInfo)
-            updateShieldBar()
+            
+        } else {
+            player.hp -= 1
+            if player.hp <= 0 {
+                updateHpBar()
+                playerIsAlive = false
+                playSfxWin(enemy.name)
+                animEnemySpr.playWinAnim(enemy.name)
+                animPlayerSpr.playLoseAnim(player.name)
+                itemDropActivate()
+                NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3), target: self, selector: #selector(ViewController.displayRestartScreen), userInfo: nil, repeats: false)
+            } else {
+            updateHpBar()
+            playSfxHurt(player.name)
+            playSfxShoot(enemy.name)
+            animPlayerSpr.playHurtAnim(player.name)
+            animEnemySpr.playAttackAnim(enemy.name)
+            itemInfo.image = UIImage (named:"itemMinusHp.png")
+            fadeInOut(itemInfo)
+            }
         }
     }
     
-    func playerIsDead() {
-        if player.hp <= 0 {
-            playerIsAlive = false
-            itemDropActivate()
-            playSfxWin(enemy.name)
-            animEnemySpr.playWinAnim(enemy.name)
-            animPlayerSpr.playLoseAnim(player.name)
-            NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3), target: self, selector: #selector(ViewController.displayRestartScreen), userInfo: nil, repeats: false)
-        } else {
-            playerIsAlive = true
-        }
-    }
-    //// Update animation if Energy item is dropped on Player
     func enemyIsAttacked() {
-        enemy.hp -= 1
-        playSfxShoot(player.name)
-        playSfxHurt(enemy.name)
-        animPlayerSpr.playAttackAnim(player.name)
-        animEnemySpr.playHurtAnim(enemy.name)
-        updateEnemyHp()
-        enemyIsDead()
+            enemy.hp -= 1
+            if enemy.hp <= 0 {
+                updateEnemyHp()
+                enemyIsAlive = false
+                playSfxWin(player.name)
+                playSfxLose(enemy.name)
+                animPlayerSpr.playWinAnim(player.name)
+                animEnemySpr.playLoseAnim(enemy.name)
+                itemDropActivate()
+                NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3), target: self, selector: #selector(ViewController.displayRestartScreen), userInfo: nil, repeats: false)
+            } else {
+            playSfxHurt(enemy.name)
+            playSfxShoot(player.name)
+            animEnemySpr.playHurtAnim(enemy.name)
+            animPlayerSpr.playAttackAnim(player.name)
+            updateEnemyHp()
+            }
     }
+
     
-    func enemyIsDead() {
-        if enemy.hp <= 0 {
-            enemyIsAlive = false
-            itemDropActivate()
-            playSfxWin(player.name)
-            animPlayerSpr.playWinAnim(player.name)
-            animEnemySpr.playLoseAnim(enemy.name)
-            NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3), target: self, selector: #selector(ViewController.displayRestartScreen), userInfo: nil, repeats: false)
-        } else {
-            enemyIsAlive = true
-        }
-    }
     
     // NSTimer
     func checkIfActive() {
