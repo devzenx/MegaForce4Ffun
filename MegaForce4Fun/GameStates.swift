@@ -259,7 +259,7 @@ class GameStates: NSObject {
             vc.animEnemySpr.playAttackAnim(vc.enemy.name)
             vc.itemInfo.image = UIImage (named:"itemBlocked.png")
             fadeInOut(vc.itemInfo)
-            
+            newRound()
         } else {
             vc.player.hp -= 1
             
