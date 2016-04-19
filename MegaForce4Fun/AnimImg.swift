@@ -19,7 +19,6 @@ class AnimImg: UIImageView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-         // as soon as this class is initialized, we play the animation.
         
     }
     

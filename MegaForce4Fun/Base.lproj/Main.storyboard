@@ -238,7 +238,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="neededItemHolder" translatesAutoresizingMaskIntoConstraints="NO" id="fnl-V2-5kw" userLabel="Dr Light Platform">
                                         <rect key="frame" x="588" y="123" width="74" height="30"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="playerSpr" image="animProtMIdle0" translatesAutoresizingMaskIntoConstraints="NO" id="rnB-T4-Wl9" userLabel="PlayerSpr" customClass="AnimImg" customModule="MegaForce4Fun" customModuleProvider="target">
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="playerSpr" image="animProtMIdle0" translatesAutoresizingMaskIntoConstraints="NO" id="rnB-T4-Wl9" userLabel="PlayerSpr" customClass="AnimImg" customModule="MegaForce4Fun" customModuleProvider="target">
                                         <rect key="frame" x="-40" y="-15" width="300" height="360"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="19Z-R9-E4E"/>
@@ -281,6 +281,13 @@
                                             </imageView>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vn3-lX-L9w">
+                                        <rect key="frame" x="-163" y="191" width="194" height="164"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="164" id="glf-bd-tOg"/>
+                                            <constraint firstAttribute="width" constant="194" id="vKB-Yd-Yl3"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -307,6 +314,7 @@
                                     <constraint firstItem="31z-VE-5Ja" firstAttribute="top" secondItem="82c-bE-M8J" secondAttribute="bottom" id="Qo0-Ut-LYk"/>
                                     <constraint firstItem="tVe-8n-1vY" firstAttribute="width" secondItem="rnB-T4-Wl9" secondAttribute="width" id="Rwa-4a-brj"/>
                                     <constraint firstItem="Mlt-gq-OB9" firstAttribute="centerX" secondItem="rnB-T4-Wl9" secondAttribute="centerX" id="S2b-Az-ha9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vn3-lX-L9w" secondAttribute="bottom" id="Uiz-pE-hjQ"/>
                                     <constraint firstItem="NFe-eL-1eo" firstAttribute="centerY" secondItem="5Eh-oV-bat" secondAttribute="centerY" id="W9G-Rv-YT1"/>
                                     <constraint firstItem="hqH-l5-ITb" firstAttribute="centerY" secondItem="WWT-Z5-rJQ" secondAttribute="centerY" id="X3u-Xj-Wf7"/>
                                     <constraint firstAttribute="trailing" secondItem="fnl-V2-5kw" secondAttribute="trailing" constant="5" id="YIx-O6-NCa"/>
@@ -318,10 +326,12 @@
                                     <constraint firstItem="D7P-8a-d2m" firstAttribute="leading" secondItem="82c-bE-M8J" secondAttribute="leading" id="cUL-1X-o5l"/>
                                     <constraint firstItem="31z-VE-5Ja" firstAttribute="leading" secondItem="Fi4-rO-Ez0" secondAttribute="leading" constant="10" id="cYI-kw-gb9"/>
                                     <constraint firstAttribute="trailing" secondItem="baS-n3-taM" secondAttribute="trailing" constant="5" id="dcl-Oa-yYt"/>
+                                    <constraint firstItem="Vn3-lX-L9w" firstAttribute="leading" secondItem="Fi4-rO-Ez0" secondAttribute="leading" constant="25" id="eCA-yR-3Y3"/>
                                     <constraint firstItem="tVe-8n-1vY" firstAttribute="height" secondItem="rnB-T4-Wl9" secondAttribute="height" id="hHO-p6-4qM"/>
                                     <constraint firstItem="fNA-fK-g3j" firstAttribute="leading" secondItem="Fi4-rO-Ez0" secondAttribute="leading" id="hb2-LW-A7p"/>
                                     <constraint firstItem="5Eh-oV-bat" firstAttribute="top" secondItem="baS-n3-taM" secondAttribute="bottom" id="jOd-HP-t43"/>
                                     <constraint firstItem="VTR-io-M5s" firstAttribute="leading" secondItem="Xla-Pz-gRP" secondAttribute="leading" id="kJ9-Om-gSy"/>
+                                    <constraint firstItem="Vn3-lX-L9w" firstAttribute="leading" secondItem="Fi4-rO-Ez0" secondAttribute="leading" constant="-163" id="njq-Lz-DGC"/>
                                     <constraint firstAttribute="bottom" secondItem="fNA-fK-g3j" secondAttribute="bottom" id="ong-Qv-619"/>
                                     <constraint firstItem="D7P-8a-d2m" firstAttribute="top" secondItem="31z-VE-5Ja" secondAttribute="bottom" id="qLw-NV-vgr"/>
                                     <constraint firstItem="NFe-eL-1eo" firstAttribute="centerX" secondItem="WWT-Z5-rJQ" secondAttribute="centerX" id="rP4-FA-4eS"/>
@@ -351,6 +361,7 @@
                                         <exclude reference="t76-r0-XrY"/>
                                         <exclude reference="tU8-c7-R2P"/>
                                         <exclude reference="wki-hb-eUg"/>
+                                        <exclude reference="eCA-yR-3Y3"/>
                                         <exclude reference="A0B-3N-YBZ"/>
                                         <exclude reference="cUL-1X-o5l"/>
                                         <exclude reference="qLw-NV-vgr"/>
@@ -513,6 +524,7 @@
                         <outlet property="lblTimerCount" destination="hqH-l5-ITb" id="N6r-Vk-Al0"/>
                         <outlet property="viewEnemyIntro" destination="64z-Cv-VEN" id="Xtt-r8-yxF"/>
                         <outlet property="viewFightScreen" destination="Fi4-rO-Ez0" id="S2Q-LM-bIU"/>
+                        <outlet property="viewHitZone" destination="Vn3-lX-L9w" id="sxM-f4-mor"/>
                         <outlet property="viewPlayerSelScreen" destination="9dk-Yx-Enj" id="28Q-m2-hYQ"/>
                         <outlet property="viewRestartScreen" destination="LtP-IA-0C5" id="vtM-pD-sYA"/>
                     </connections>

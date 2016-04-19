@@ -45,8 +45,8 @@ class DragItem: UIImageView {
             let position = touch.locationInView(self.superview)
             // If the position you tapped on inside the target frame, then we passe it to the touch = position
             if CGRectContainsPoint(target.frame, position) {
+                
                 dropTarget!.tag = self.tag // Transfer the self.image tag to the droptarget
-                print("Item touched the target \(dropTarget?.restorationIdentifier)")
                 NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "onTargetDropped", object: nil))
             }
         }

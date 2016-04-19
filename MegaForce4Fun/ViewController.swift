@@ -79,6 +79,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imgItemBottom: DragItem!
 
+    @IBOutlet weak var viewHitZone: UIView!
     
     // ** RESTART SCREEN
     

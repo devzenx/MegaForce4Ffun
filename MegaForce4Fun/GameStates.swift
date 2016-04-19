@@ -27,10 +27,10 @@ class GameStates: NSObject {
         //// We create a listener/observer for any notifications from DragItem.swift
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameStates.itemDroppedOnPlayer), name: "onTargetDropped", object: nil)
         
-        //// the droptarget is not at the right place, it is shifted to the right.
-        vc.imgItemTop.dropTarget = vc.animPlayerSpr
-        vc.imgItemCenter.dropTarget = vc.animPlayerSpr
-        vc.imgItemBottom.dropTarget = vc.animPlayerSpr
+        //// the droptarget is not at the right place, it is shifted to the right. I had to cheat and simulate a hit area. I think it's related to Auto-Layout.
+        vc.imgItemTop.dropTarget = vc.viewHitZone
+        vc.imgItemCenter.dropTarget = vc.viewHitZone
+        vc.imgItemBottom.dropTarget = vc.viewHitZone
         
     }
     
@@ -171,10 +171,10 @@ class GameStates: NSObject {
     func itemDroppedOnPlayer() {
         vc.playerIsActive = true
         
-        if vc.animPlayerSpr.tag == vc.imgNeedItem.tag {
-            if vc.animPlayerSpr.tag == 1 {
+        if vc.viewHitZone.tag == vc.imgNeedItem.tag {
+            if vc.viewHitZone.tag == 1 {
                 enemyIsAttacked()
-            } else if vc.animPlayerSpr.tag == 2 {
+            } else if vc.viewHitZone.tag == 2 {
                 addExtraLife()
                 newRound()
             } else {
