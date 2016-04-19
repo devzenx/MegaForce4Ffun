@@ -11,6 +11,8 @@ import UIKit
 
 class AnimImg: UIImageView {
 
+    var originalPosition: CGPoint!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -20,20 +22,20 @@ class AnimImg: UIImageView {
          // as soon as this class is initialized, we play the animation.
         
     }
-
+    
     // ANIMATED BACKGROUNDS
     
     
     // Character selection default background
     func playPlayerSelectBg() {
-        self.image = UIImage (named: "animSelectBg1.png")
+        self.image = UIImage (named: "animCharSelect11.png")
         
         self.animationImages = nil
         
         var imgArray = [UIImage]()
         
         for x in 1...3 {
-            let img = UIImage(named: "animSelectBg\(x).png")
+            let img = UIImage(named: "animCharSelect\(x).png")
             imgArray.append(img!)
         }
         
@@ -43,14 +45,15 @@ class AnimImg: UIImageView {
         self.startAnimating()
     }
     
+    // Restart screen ending movie
     func playRestartBg() {
-        self.image = UIImage (named: "animEnding12.png")
+        self.image = UIImage (named: "animEnding15.png")
         
         self.animationImages = nil
         
         var imgArray = [UIImage]()
         
-        for x in 1...12 {
+        for x in 1...15 {
             let img = UIImage(named: "animEnding\(x).png")
             imgArray.append(img!)
         }
@@ -58,6 +61,25 @@ class AnimImg: UIImageView {
         self.animationImages = imgArray
         self.animationDuration = 15
         self.animationRepeatCount = 1
+        self.startAnimating()
+    }
+
+    // Enemy introduction screen
+    func playEnemyIntro() {
+        self.image = UIImage (named: "animEnemyIntro1.png")
+        
+        self.animationImages = nil
+        
+        var imgArray = [UIImage]()
+        
+        for x in 1...16 {
+            let img = UIImage(named: "animEnemyIntro\(x).png")
+            imgArray.append(img!)
+        }
+        
+        self.animationImages = imgArray
+        self.animationDuration = 2
+        self.animationRepeatCount = 0
         self.startAnimating()
     }
 

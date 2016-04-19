@@ -13,25 +13,41 @@ import AVFoundation
 class ViewController: UIViewController {
     
     
-// IBOUTLETS // CHARACTER SELECTION
+// IBOUTLETS
     
+    // ** CHARACTER SELECTION
     
     @IBOutlet weak var viewPlayerSelScreen: UIView!
     
-    @IBOutlet weak var imgPlayerBg: UIImageView!
+    @IBOutlet weak var imgPlayerBg: AnimImg!
+    
+    @IBOutlet weak var imgChoiceBg: UIImageView!
+    
+    @IBOutlet weak var imgSlidingWall: UIImageView!
+    
+    @IBOutlet weak var btnMegaM: UIButton!
+    
+    @IBOutlet weak var btnProtM: UIButton!
+    
+    @IBOutlet weak var lblChoiceMessage: UIStackView!
+    
+    @IBOutlet weak var imgRdyBtnBg: UIImageView!
+    
+    @IBOutlet weak var btnReady: UIButton!
     
     
-// IBOUTLETS // ENEMY INTRODUCTION SCREEN
+    // ** ENEMY INTRODUCTION
     
-
-// IBOUTLETS // FIGHT SCREEN
+    @IBOutlet weak var viewEnemyIntro: UIView!
     
- 
-    @IBOutlet weak var btnItemTop: UIButton!
+    @IBOutlet weak var imgEnemyIntroBg: AnimImg!
     
-    @IBOutlet weak var btnItemCenter: UIButton!
+    @IBOutlet weak var imgAirmanIntro: AnimImg!
     
-    @IBOutlet weak var btnItemBottom: UIButton!
+    @IBOutlet weak var lblEnemyName: UIImageView!
+    
+    
+    // ** FIGHT SCREEN
     
     @IBOutlet weak var viewFightScreen: UIView!
     
@@ -55,8 +71,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var itemInfo: UIImageView!
     
+    @IBOutlet weak var lblTimerCount: UILabel!
+    
+    @IBOutlet weak var imgItemTop: DragItem!
+    
+    @IBOutlet weak var imgItemCenter: DragItem!
+    
+    @IBOutlet weak var imgItemBottom: DragItem!
 
-// IBOUTLETS // RESTART SCREEN
+    
+    // ** RESTART SCREEN
     
     @IBOutlet weak var animEndingSpr: AnimImg!
     
@@ -65,28 +89,36 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnNewChar: UIButton!
     
     @IBOutlet weak var btnGameRestart: UIButton!
-
+    
     
     
 // VARIABLES
     
+    var gs: GameStates!
     
+    let MAX_HP: Int = 4
+    let MAX_SHIELD = 4
+    let OPAQUE: CGFloat = 1
+    let TRANSPARENT: CGFloat = 0
+    let DEF_TIMER: Int = 3
+    
+    var setChoice: String = "Megaman"
     var player: Character = Character()
     var enemy: Airman = Airman()
     var enemyHp: Int = 4
-    
     var itemArray: [Int] = [1, 2, 3]
     var playerNeedArray: [Int] = [1, 2, 3]
-    let MAX_HP: Int = 4
-    let MAX_SHIELD = 4
     var playerIsActive: Bool = false
     var playerIsAlive: Bool = true
     var enemyIsAlive: Bool = true
-    var timer: NSTimer!
-    let OPAQUE: CGFloat = 1
-    let TRANSPARENT: CGFloat = 0
+    var roundTimer: NSTimer!
+    var myTimer: NSTimer!
+    var timeLeft: Int = 3
     
     //// Images
+    var megaMSelectBg: UIImage = UIImage (named:"megaMPlayerBg.jpg")!
+    var protMSelectBg: UIImage = UIImage (named:"protMPlayerBg.jpg")!
+    var emptyRdyBtn: UIImage = UIImage (named:"rdyBtn.png")!
     var energyItem: UIImage = UIImage (named: "attackItem.png")!
     var healthItem: UIImage = UIImage (named: "lifeItem.png")!
     var shieldItem: UIImage = UIImage (named: "shieldItem.png")!
@@ -109,10 +141,12 @@ class ViewController: UIViewController {
     var sfxMegaMShoot: AVAudioPlayer!
     var sfxMegaMHurt: AVAudioPlayer!
     var sfxMegaMWin: AVAudioPlayer!
+    var sfxMegaMLose: AVAudioPlayer!
     
     var sfxProtMShoot: AVAudioPlayer!
     var sfxProtMHurt: AVAudioPlayer!
     var sfxProtMWin: AVAudioPlayer!
+    var sfxProtMLose: AVAudioPlayer!
     
     var sfxAirMShoot: AVAudioPlayer!
     var sfxAirMHurt: AVAudioPlayer!
@@ -120,81 +154,70 @@ class ViewController: UIViewController {
     var sfxAirMLose: AVAudioPlayer!
     
     
-// IBACTIONS // CHARACTER SELECTION
+    
+// IBACTIONS
+    
+    
+    // ** CHARACTER SELECTION SCREEN
     
     
     @IBAction func chooseMegaman(sender: AnyObject) {
-        imgPlayerBg.image = UIImage (named:"megamanPlayerBg")
-        player = Megaman()
+        setChoice = "Megaman"
         sfxMenuBtnPressed.play()
-        animPlayerSpr.playIdleAnim(player.name)
-        animEnemySpr.playIdleAnim(enemy.name)
-        enemy = Airman()
-        displayFightScreen()
+        gs.sliderInOut()
     }
+    
     
     @IBAction func chooseProtoman(sender: AnyObject) {
-        imgPlayerBg.image = UIImage (named:"protomanPlayerBg")
-        player = Protoman()
+        setChoice = "Protoman"
         sfxMenuBtnPressed.play()
-        animPlayerSpr.playIdleAnim(player.name)
-        animEnemySpr.playIdleAnim(enemy.name)
-        enemy = Airman()
-        displayFightScreen()
+        gs.sliderInOut()
+    }
+
+    @IBAction func playerIsReady(sender: AnyObject) {
+        sfxMenuBtnPressed.play()
+        if setChoice == "Megaman" {
+                    imgPlayerBg.image = UIImage (named:"megamanPlayerBg")
+                    player = Megaman()
+                    animPlayerSpr.playIdleAnim(player.name)
+                    animEnemySpr.playIdleAnim(enemy.name)
+                    enemy = Airman()
+                    gs.displayEnemyIntroScreen()
+        } else {
+                    imgPlayerBg.image = UIImage (named:"protomanPlayerBg")
+                    player = Protoman()
+                    animPlayerSpr.playIdleAnim(player.name)
+                    animEnemySpr.playIdleAnim(enemy.name)
+                    enemy = Airman()
+                    gs.displayEnemyIntroScreen()
+        }
     }
     
-    
-// IBACTIONS // FIGHT SCREEN
-    
-    
-    @IBAction func playerBtnTop(sender: AnyObject) {
-        playerIsActive = true
-        updatePlayerState(btnItemTop)
-        newRound()
-    }
-    
-    @IBAction func playerBtnCenter(sender: AnyObject) {
-        playerIsActive = true
-        updatePlayerState(btnItemCenter)
-        newRound()
-    }
-    
-    @IBAction func playerBtnBottom(sender: AnyObject) {
-        playerIsActive = true
-        updatePlayerState(btnItemBottom)
-        newRound()
-    }
-    
-    @IBAction func endTimer(sender: AnyObject) {
-        playerIsActive = false
-        checkIfActive()
-        newRound()
-    }
-    
-    
-// IBACTIONS // RESTART SCREEN
+
+    // ** RESTART SCREEN
     
     
     //// Return to the character selection screen
     @IBAction func ChooseCharacter(sender: AnyObject) {
-        displaySelectionScreen()
+        gs.displaySelectionScreen()
         sfxMenuBtnPressed.play()
         
     }
     
-    //// Restart Game
+    //// Restart the game
     @IBAction func gameRestart(sender: AnyObject) {
-        resetFight()
-        displayFightScreen()
+        gs.restartFight()
+        gs.displayFightScreen()
         sfxMenuBtnPressed.play()
     }
     
 
     
-// VIEWDIDLOAD
+// INITIALIZER
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gs = GameStates(vc: self)
 
         //// Audio declaration
         
@@ -237,6 +260,9 @@ class ViewController: UIViewController {
             try sfxMegaMWin = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sfxMegaMWin", ofType: "wav")!))
                 sfxMegaMWin.prepareToPlay()
             
+            try sfxMegaMLose = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sfxMegaMLose", ofType: "wav")!))
+            sfxMegaMLose.prepareToPlay()
+            
             //// Characters // Protoman
             
             try sfxProtMShoot = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sfxProtMShoot", ofType: "wav")!))
@@ -247,6 +273,9 @@ class ViewController: UIViewController {
             
             try sfxProtMWin = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sfxProtMWin", ofType: "wav")!))
                 sfxProtMWin.prepareToPlay()
+            
+            try sfxProtMLose = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sfxProtMLose", ofType: "wav")!))
+            sfxProtMLose.prepareToPlay()
             
             //// Characters // Airman
             
@@ -265,314 +294,18 @@ class ViewController: UIViewController {
         } catch let err as NSError {
             print(err.debugDescription)
         }
-        displaySelectionScreen()
-        //        startTimer()
+        gs.displaySelectionScreen()
     }
+    
+    
+    
+// METHODS
 
-    
-    
-// METHODS // CHARACTER SELECTION
-    
-    
-    //// Display selection screen
-    func displaySelectionScreen() {
-        stopBgm(bgmFight)
-        stopBgm(bgmRestart)
-        playBgm(bgmCharSel)
-        viewRestartScreen.hidden = true
-        viewPlayerSelScreen.hidden = false
-    }
-    
-    //// Display fight screen
-    func displayFightScreen() {
-        stopBgm(bgmCharSel)
-        stopBgm(bgmRestart)
-        playBgm(bgmFight)
-        imgBattleBg.image = player.charBattleBg
-        imgBattleGround.image = player.charBattleGround
-        animEnemySpr.transform = CGAffineTransformMakeScale(-1, 1)
-        animDrLightHolo.playDrLightHolo()
-        viewPlayerSelScreen.hidden = true
-        viewFightScreen.hidden = false
-        newRound()
-    }
-    
-    
-// METHODS // FIGHT SCREEN
-
-    
-    //// Display Restart screen
-    func displayRestartScreen() {
-        stopBgm(bgmFight)
-        playBgm(bgmRestart)
-        animEndingSpr.playRestartBg()
-        viewFightScreen.hidden = true
-        viewRestartScreen.hidden = false
-    }
-    
-    
-    //// Start a new round
-    func newRound() {
-        
-        // Display randomly an item which the player needs to pick.
-        let randPlayerNeed = Int(arc4random_uniform(UInt32(playerNeedArray.count))) + 1
-        imgNeedItem.tag = randPlayerNeed
-        updateItemNeed()
-        
-        // Randomize all buttons images
-        itemArray.shuffleInPlace()
-        btnItemTop.tag = itemArray[0]
-        btnItemCenter.tag = itemArray[1]
-        btnItemBottom.tag = itemArray[2]
-        updateHpBar()
-        updateShieldBar()
-        updateEnemyHp()
-        updateImgBtn(btnItemTop)
-        updateImgBtn(btnItemCenter)
-        updateImgBtn(btnItemBottom)
-        itemDropActivate()
-    }
-    
-    //// Reset the fight if "Restart button" is pressed
-    func resetFight() {
-        player.hp = 4
-        player.shieldCount = 0
-        enemy.hp = 4
-        itemDropActivate()
-        animPlayerSpr.playIdleAnim(player.name)
-        animEnemySpr.playIdleAnim(enemy.name)
-        viewFightScreen.hidden = false
-        viewRestartScreen.hidden = true
-        playerIsAlive = false
-        newRound()
-    }
-    
-    //// Start the timer
-    func startTimer() {
-        if timer != nil {
-            timer.invalidate()
-        }
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(ViewController.timeIsOver), userInfo: nil, repeats: true)
-        
-    }
-
-    //// When the timer is over, check if an item has been dropped on the player sprite
-    func timeIsOver() {
-        playerIsActive = false
-        checkIfActive()
-        newRound()
-    }
-    
-    func itemDropActivate() {
-        if  player.hp <= 0 || enemy.hp <= 0 {
-            imgNeedItem.hidden = true
-            btnItemTop.hidden = true
-            btnItemCenter.hidden = true
-            btnItemBottom.hidden = true
-        } else {
-            imgNeedItem.hidden = false
-            btnItemTop.hidden = false
-            btnItemCenter.hidden = false
-            btnItemBottom.hidden = false
-        }
-
-    }
-    
-    
-    //// Update the image to show to the player what item needs to be dropped on the character.
-    func updateItemNeed() {
-        if imgNeedItem.tag == 1 {
-            imgNeedItem.image = energyNeededItem
-        } else if imgNeedItem.tag == 2 {
-            imgNeedItem.image = healthNeededItem
-        } else {
-            imgNeedItem.image = shieldNeededItem
-        }
-    }
-    
-    //// Update the button image according to its current tag
-    func updateImgBtn(sender: UIButton) {
-        if sender.tag == 1 {
-            sender.setImage(energyItem, forState: .Normal)
-        } else if sender.tag == 2 {
-            sender.setImage(healthItem, forState: .Normal)
-        } else {
-            sender.setImage(shieldItem, forState: .Normal)
-        }
-    }
-    
-    //// Update the player state according to what has been dropped on the player.
-    func updatePlayerState(button: UIButton) {
-        playerIsActive = true
-        
-        if button.tag == imgNeedItem.tag {
-            if imgNeedItem.tag == 1 {
-                enemyIsAttacked()
-            } else if imgNeedItem.tag == 2 {
-                addExtraLife()
-            } else {
-                addExtraShield()
-            }
-        } else {
-            playerIsAttacked()
-        }
-    }
-
-    func addExtraLife() {
-        if player.hp >= MAX_HP {
-            itemInfo.image = UIImage (named:"itemMaxHp.png")
-            fadeInOut(itemInfo)
-        } else {
-            player.hp += 1
-            sfxLifeUp.play()
-            updateHpBar()
-            itemInfo.image = UIImage (named:"itemPlusHp.png")
-            fadeInOut(itemInfo)
-        }
-    }
-    
-    func addExtraShield() {
-        if player.shieldCount >= MAX_SHIELD {
-            itemInfo.image = UIImage (named:"itemMaxShield.png")
-            fadeInOut(itemInfo)
-        } else {
-            player.shieldCount += 1
-            sfxShieldUp.play()
-            itemInfo.image = UIImage (named:"itemPlusShield.png")
-            fadeInOut(itemInfo)
-            updateShieldBar()
-        }
-    }
-    
-    func playerIsAttacked() {
-        if player.shieldCount >= 1 {
-            player.shieldCount -= 1
-            updateShieldBar()
-            sfxShieldBlock.play()
-            animPlayerSpr.playIdleAnim(player.name)
-            animEnemySpr.playAttackAnim(enemy.name)
-            itemInfo.image = UIImage (named:"itemBlocked.png")
-            fadeInOut(itemInfo)
-            
-        } else {
-            player.hp -= 1
-            if player.hp <= 0 {
-                updateHpBar()
-                playerIsAlive = false
-                playSfxWin(enemy.name)
-                animEnemySpr.playWinAnim(enemy.name)
-                animPlayerSpr.playLoseAnim(player.name)
-                itemDropActivate()
-                NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3), target: self, selector: #selector(ViewController.displayRestartScreen), userInfo: nil, repeats: false)
-            } else {
-            updateHpBar()
-            playSfxHurt(player.name)
-            playSfxShoot(enemy.name)
-            animPlayerSpr.playHurtAnim(player.name)
-            animEnemySpr.playAttackAnim(enemy.name)
-            itemInfo.image = UIImage (named:"itemMinusHp.png")
-            fadeInOut(itemInfo)
-            }
-        }
-    }
-    
-    func enemyIsAttacked() {
-            enemy.hp -= 1
-            if enemy.hp <= 0 {
-                updateEnemyHp()
-                enemyIsAlive = false
-                playSfxWin(player.name)
-                playSfxLose(enemy.name)
-                animPlayerSpr.playWinAnim(player.name)
-                animEnemySpr.playLoseAnim(enemy.name)
-                itemDropActivate()
-                NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(3), target: self, selector: #selector(ViewController.displayRestartScreen), userInfo: nil, repeats: false)
-            } else {
-            playSfxHurt(enemy.name)
-            playSfxShoot(player.name)
-            animEnemySpr.playHurtAnim(enemy.name)
-            animPlayerSpr.playAttackAnim(player.name)
-            updateEnemyHp()
-            }
-    }
-
-    
-    
-    // NSTimer
-    func checkIfActive() {
-        if playerIsActive == false {
-            playerIsAttacked()
-        }
-    }
-    
-    //// Udpate player HP bar
-    func updateHpBar() {
-        if player.hp == 4 {
-            imgHpBar.image = UIImage(named:"barHp4-4.png")
-        } else if player.hp == 3 {
-            imgHpBar.image = UIImage(named:"barHp3-4.png")
-        } else if player.hp == 2 {
-            imgHpBar.image = UIImage(named:"barHp2-4.png")
-        } else if player.hp == 1 {
-            imgHpBar.image = UIImage(named:"barHp1-4.png")
-        } else {
-            imgHpBar.image = UIImage(named:"barHp0-4.png")
-        }
-    }
-    
-    //// Udpate player shield bar
-    func updateShieldBar() {
-        
-        if player.shieldCount == 4 {
-            imgShieldBar.image = UIImage(named:"barShield4-4.png")
-        } else if player.shieldCount == 3 {
-            imgShieldBar.image = UIImage(named:"barShield3-4.png")
-        } else if player.shieldCount == 2 {
-            imgShieldBar.image = UIImage(named:"barShield2-4.png")
-        } else if player.shieldCount == 1 {
-            imgShieldBar.image = UIImage(named:"barShield1-4.png")
-        } else {
-            imgShieldBar.image = UIImage(named:"barShield0-4.png")
-        }
-    }
-    
-    //// Udpate enemy shield bar
-    func updateEnemyHp() {
-        if enemy.hp == 4 {
-            imgEnemyHpBar.image = UIImage (named:"barHpEnemy4-4.png")
-        }else if enemy.hp == 3 {
-            imgEnemyHpBar.image = UIImage (named:"barHpEnemy3-4.png")
-        }else if enemy.hp == 2 {
-            imgEnemyHpBar.image = UIImage (named:"barHpEnemy2-4.png")
-        }else if enemy.hp == 1 {
-            imgEnemyHpBar.image = UIImage (named:"barHpEnemy1-4.png")
-        }else {
-            imgEnemyHpBar.image = UIImage (named:"barHpEnemy0-4.png")
-        }
-    }
-    
-    //// Animation effect
-    func fadeInOut(imageName:UIImageView){
-        imageName.alpha = self.TRANSPARENT
-        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: {
-            imageName.alpha = self.OPAQUE
-            imageName.center.y += self.view.bounds.height
-            }, completion:{finished in
-                if (finished) {
-                    UIView.animateWithDuration(0.2, delay: 0.5, options: [], animations: {
-                        imageName.alpha = self.TRANSPARENT
-                        }, completion: nil)
-                }
-        })
-        imageName.center.y -= self.view.bounds.height
-    }
-    
-    //// Play BGM audio with settings
-    func playBgm(audioName: AVAudioPlayer) {
-            audioName.numberOfLoops = -1
-            audioName.currentTime = 0
-            audioName.volume = 0.2
+    //// Play BGM audio with settings.
+    func playCustomBgm(audioName: AVAudioPlayer) {
+            audioName.numberOfLoops = -1 // Infinite loop
+            audioName.currentTime = 0 // Return to the start of the track
+            audioName.volume = 1 // Full volume
             audioName.play()
     }
     
@@ -581,7 +314,7 @@ class ViewController: UIViewController {
         audioName.stop()
     }
     
-    // Sound played when getting hurt depending on the character
+    //// Sound played when getting hurt depending on the character.
     func playSfxHurt(name:String) {
         if name == "Megaman" {
             sfxMegaMHurt.play()
@@ -592,6 +325,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //// Sound played when shooting at a character depending on the character.
     func playSfxShoot(name:String) {
         if name == "Megaman" {
             sfxMegaMShoot.play()
@@ -601,7 +335,8 @@ class ViewController: UIViewController {
             sfxAirMShoot.play()
         }
     }
- 
+    
+    //// Sound played when winning depending on the character.
     func playSfxWin(name:String) {
         if name == "Megaman" {
             sfxMegaMWin.play()
@@ -614,9 +349,9 @@ class ViewController: UIViewController {
     
     func playSfxLose(name:String) {
         if name == "Megaman" {
-            
+            sfxMegaMLose.play()
         } else if name == "Protoman" {
-            
+            sfxProtMLose.play()
         } else {
             sfxAirMLose.play()
         }
